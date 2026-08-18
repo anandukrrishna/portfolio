@@ -1,0 +1,66 @@
+/* ==========================================================================
+   ANIMATIONS — pure CSS + the small IntersectionObserver in js/animations.js
+   No external libraries. Motion is disabled via prefers-reduced-motion
+   in css/responsive.css.
+   ========================================================================== */
+
+/* ---------------- Hero entrance ---------------- */
+.hero-name .line{
+  opacity:0;
+  transform:translateY(20px);
+  transition:opacity .55s var(--ease-out),transform .55s var(--ease-out);
+}
+#hero.in .hero-name .line{opacity:1;transform:translateY(0);}
+#hero.in .hero-name .line:nth-child(2){transition-delay:.06s;}
+
+.hero-status,.hero-role,.hero-desc,.hero-cta,.hero-socials,.terminal{
+  opacity:0;
+  transform:translateY(12px);
+  transition:opacity .5s var(--ease-out),transform .5s var(--ease-out);
+}
+#hero.in .hero-status{transition-delay:.12s;}
+#hero.in .hero-role{transition-delay:.18s;}
+#hero.in .hero-desc{transition-delay:.24s;}
+#hero.in .hero-cta{transition-delay:.3s;}
+#hero.in .hero-socials{transition-delay:.36s;}
+#hero.in .terminal{transition-delay:.22s;}
+#hero.in .hero-status,
+#hero.in .hero-role,
+#hero.in .hero-desc,
+#hero.in .hero-cta,
+#hero.in .hero-socials,
+#hero.in .terminal{
+  opacity:1;transform:translateY(0);
+}
+
+/* Terminal rows "type in" one at a time */
+.terminal-row{
+  opacity:0;transform:translateX(-6px);
+  transition:opacity .4s var(--ease-out),transform .4s var(--ease-out);
+}
+#hero.in .terminal-row{opacity:1;transform:translateX(0);}
+#hero.in .terminal-row:nth-child(1){transition-delay:.42s;}
+#hero.in .terminal-row:nth-child(2){transition-delay:.5s;}
+#hero.in .terminal-row:nth-child(3){transition-delay:.58s;}
+#hero.in .terminal-row:nth-child(4){transition-delay:.66s;}
+
+/* ---------------- Staggered reveal for repeating card groups ---------------- */
+/* .reveal itself (opacity/translateY + transition) lives in style.css;
+   here we only add per-item delay so groups animate in one after another
+   instead of all at once. */
+.skills-groups .skill-group:nth-child(1){transition-delay:.03s;}
+.skills-groups .skill-group:nth-child(2){transition-delay:.07s;}
+.skills-groups .skill-group:nth-child(3){transition-delay:.11s;}
+.skills-groups .skill-group:nth-child(4){transition-delay:.15s;}
+.skills-groups .skill-group:nth-child(5){transition-delay:.19s;}
+.skills-groups .skill-group:nth-child(6){transition-delay:.23s;}
+.skills-groups .skill-group:nth-child(7){transition-delay:.27s;}
+
+.project-list .project-card:nth-child(1){transition-delay:.04s;}
+.project-list .project-card:nth-child(2){transition-delay:.09s;}
+.project-list .project-card:nth-child(3){transition-delay:.14s;}
+
+.cert-grid .cert-card:nth-child(1){transition-delay:.04s;}
+.cert-grid .cert-card:nth-child(2){transition-delay:.09s;}
+.cert-grid .cert-card:nth-child(3){transition-delay:.14s;}
+.cert-grid .cert-card:nth-child(4){transition-delay:.19s;}

@@ -1,0 +1,14 @@
+Place your resume PDF in this folder with the exact filename:
+
+    Anandukrishna_Python_Developer_Resume.pdf
+
+The site's resume actions link to:
+
+    assets/resume/Anandukrishna_Python_Developer_Resume.pdf
+
+  - The "View Resume" button in the hero opens this file in a new tab
+    (with a small existence check -- if the file isn't here yet, the
+    visitor sees a brief "not added yet" notice instead of a broken tab).
+  - The "Download Resume" button in the navbar and mobile menu downloads it.
+
+Once you add the real file here, delete this placeholder note.
