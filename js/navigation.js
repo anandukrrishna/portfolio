@@ -1,6 +1,6 @@
 /* ==========================================================================
    navigation.js — navbar scroll state, mobile menu, smooth scroll,
-   active-section link highlighting, and the navbar name's profile popover.
+   and active-section link highlighting.
    ========================================================================== */
 (function () {
   document.addEventListener('DOMContentLoaded', () => {
@@ -37,7 +37,6 @@
     }
     navToggle?.addEventListener('click', (e) => {
       e.stopPropagation();
-      closeProfilePopover();
       mobileMenu.classList.contains('open') ? closeMobileMenu() : openMobileMenu();
     });
     // Any link inside the mobile menu (section links, socials, resume) closes it
@@ -82,35 +81,5 @@
       }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
       sections.forEach(s => observer.observe(s));
     }
-
-    /* ---------------- Navbar name → small profile popover ---------------- */
-    const profileTrigger = document.getElementById('profile-trigger');
-    const profilePopover = document.getElementById('profile-popover');
-
-    function openProfilePopover() {
-      if (!profilePopover) return;
-      closeMobileMenu();
-      profilePopover.classList.add('open');
-      profilePopover.setAttribute('aria-hidden', 'false');
-      profileTrigger?.setAttribute('aria-expanded', 'true');
-    }
-    function closeProfilePopover() {
-      if (!profilePopover || !profilePopover.classList.contains('open')) return;
-      profilePopover.classList.remove('open');
-      profilePopover.setAttribute('aria-hidden', 'true');
-      profileTrigger?.setAttribute('aria-expanded', 'false');
-    }
-    profileTrigger?.addEventListener('click', (e) => {
-      e.stopPropagation();
-      profilePopover?.classList.contains('open') ? closeProfilePopover() : openProfilePopover();
-    });
-    document.addEventListener('click', (e) => {
-      if (!profilePopover || !profilePopover.classList.contains('open')) return;
-      if (profilePopover.contains(e.target) || profileTrigger?.contains(e.target)) return;
-      closeProfilePopover();
-    });
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeProfilePopover();
-    });
   });
 })();

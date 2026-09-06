@@ -38,7 +38,6 @@
   .nav-resume-full{display:none;}
   .nav-resume-short{display:inline;}
   .nav-resume{padding:.68rem 1rem;}
-  .cert-grid{grid-template-columns:1fr;}
   .hero-grid{grid-template-columns:1fr;}
   .stats-row{flex-wrap:wrap;}
   .stat-cell{flex:1 1 50%;border-bottom:1px solid var(--border);}
@@ -52,9 +51,6 @@
 
   /* Centered, balanced social row */
   .hero-socials{justify-content:center;}
-
-  /* Profile popover repositions to stay inside the viewport under the compact header */
-  .profile-popover{left:clamp(1rem,4vw,2.5rem);right:auto;}
 }
 
 /* Small tablet / large phone */
@@ -91,7 +87,6 @@
   .modal-card{max-width:100%;}
   .nav-logo{font-size:.9rem;}
   .edu-secondary{flex-direction:column;}
-  .profile-popover{width:min(260px, calc(100vw - 2rem));left:clamp(.9rem,4vw,2rem);}
 }
 
 /* Very small phone */
@@ -101,7 +96,6 @@
   .nav-logo{font-size:.82rem;}
   .nav-resume{padding:.6rem .8rem;font-size:.72rem;}
   .hero-cta .btn{flex:1 1 100%;}
-  .profile-popover{width:min(230px, calc(100vw - 1.6rem));}
 }
 
 /* Reduced motion */

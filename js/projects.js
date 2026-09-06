@@ -1,7 +1,7 @@
 /* ==========================================================================
-   projects.js — single source of truth for project + certification content,
-   plus the shared modal system used by both.
-   Edit the `projects` / `certifications` arrays below to update content.
+   projects.js — single source of truth for project content, plus the
+   modal system used to show each project's case study.
+   Edit the `projects` array below to update content.
 
    Notes on design intent:
    - Project cards are intentionally information-only: no screenshot, no
@@ -21,104 +21,58 @@ const projects = [
     id: 'signbridge',
     number: '01',
     name: 'SignBridge',
-    tagline: 'Accessibility-focused communication platform.',
-    description: 'An accessibility-focused communication platform with a responsive, mobile-first CSS interface and dynamic form handling, built using Django MVT architecture.',
-    tech: ['Django', 'JavaScript', 'HTML5', 'CSS3', 'Bootstrap'],
-    github: 'https://github.com/anandukrishna-git', // placeholder — replace with exact repo URL
+    tagline: 'Accessibility platform with live sign-language recognition.',
+    description: 'A communication platform for the deaf and hard-of-hearing community: a Django portal paired with a live ISL (Indian Sign Language) interpreter that reads hand gestures through the camera in real time and speaks them back as text-to-speech.',
+    tech: ['Django', 'Python', 'OpenCV', 'MediaPipe', 'scikit-learn', 'Angular', 'JavaScript', 'HTML5', 'CSS3'],
+    github: 'https://github.com/anandukrrishna/signbridge',
     liveDemo: '',
     case: {
-      overview: 'A communication platform designed with accessibility as the central constraint.',
-      features: 'Mobile-first responsive UI, dynamic form handling, MVT architecture.',
-      role: '',
-      problem: '',
-      solution: '',
-      challenges: '',
-      result: ''
+      overview: 'SignBridge tackles two-way sign-language communication: a live camera interpreter that turns hand signs into spoken sentences, and a companion module that animates written text back into sign language.',
+      features: 'Live MJPEG video interpreter with real-time hand-landmark tracking, debounced sign-to-letter recognition, automatic sentence-to-speech playback, an Angular-based text-to-sign animator, and a Django portal for user accounts, complaints and feedback.',
+      role: 'Built the Django web platform end-to-end and integrated the live ISL recognition pipeline — wiring a Python/OpenCV/MediaPipe hand-tracking model into the app as a real-time camera feed.',
+      problem: "Deaf and hard-of-hearing users need a way to communicate that doesn't depend on a human interpreter being available, and most sign-language tools online only translate in one direction.",
+      solution: 'A Django MVT app with admin and user portals, plus a live camera-based interpreter that reads hand landmarks with MediaPipe, classifies them with a trained scikit-learn model, and reads the recognised sentence aloud. A companion Angular module handles the reverse direction, animating text into sign language.',
+      challenges: "Making sign recognition feel reliable rather than flickery meant debouncing predictions across ~30 consecutive frames before committing a letter, and streaming the annotated camera feed back to the browser as MJPEG so the interpreter felt live instead of request/response.",
+      result: 'A working end-to-end prototype: live camera sign recognition with spoken output on one side, and text-to-sign animation on the other, behind a shared authenticated portal.'
     }
   },
   {
-    id: 'food-waste-reducer',
+    id: 'sharebite',
     number: '02',
-    name: 'Food Waste Reducer',
-    tagline: 'Full-stack food donation platform connecting donors and recipients.',
-    description: 'A full-stack food donation platform connecting donors and recipients, with role-based authentication and CRUD operations built using Django.',
-    tech: ['Django', 'Python', 'SQLite', 'Bootstrap', 'HTML', 'CSS'],
-    github: 'https://github.com/anandukrishna-git', // placeholder — replace with exact repo URL
+    name: 'ShareBite',
+    tagline: 'Full-stack donation platform connecting donors and recipients.',
+    description: 'A three-role donation platform — admin, donor and recipient — that lets restaurants, hotels and individuals list surplus food and connects it with people who need it, with a request-and-approval workflow and role-based authentication.',
+    tech: ['Django', 'Python', 'SQLite', 'Bootstrap', 'HTML5', 'CSS3', 'JavaScript'],
+    github: 'https://github.com/anandukrrishna/sharebite',
     liveDemo: '',
     case: {
-      overview: 'A donation platform matching food donors with recipients in need.',
-      features: 'Role-based authentication, donor/recipient CRUD workflows.',
-      role: '',
-      problem: '',
-      solution: '',
-      challenges: '',
-      result: ''
+      overview: 'ShareBite is a donation platform matching food donors with people in need, built around a stock-aware request-and-approval workflow so listings can never be over-committed.',
+      features: 'Role-based authentication for admin, donor and recipient accounts; surplus-food listings with quantity and pickup details; a request → approve/reject flow with automatic stock decrement; bookmarking, complaints and star-rated feedback for every role; and an admin dashboard with platform-wide announcements.',
+      role: 'Designed the data model and built the full-stack app with Django class-based views, covering all three roles and the request/approval workflow end-to-end.',
+      problem: "Usable surplus food from restaurants, hotels and individual donors often goes to waste simply because there's no easy way to connect it with people nearby who need it.",
+      solution: 'A platform where donors publish surplus food listings, recipients browse and request what they need, and donors approve or reject requests — with a stock guard that stops a listing from being claimed past its available quantity.',
+      challenges: 'Keeping the approve/reject flow correct so a listing could never be over-committed, and designing complaints and feedback so either could point at a donor or at the platform itself without duplicating models for every target type.',
+      result: 'A fully working donation platform with an automated test suite covering login and registration for all three roles, the request-to-approval flow with stock verification, and the complaints/feedback flows.'
     }
   },
   {
     id: 'skillhub',
     number: '03',
     name: 'SkillHub',
-    tagline: 'Multi-role Django platform for students, companies and staff.',
-    description: 'Built a multi-role Django platform for students, companies and staff with project listings, shortlisting and feedback workflows, modelling 10+ interlinked entities using Django ORM. Unified the front-end with a reusable CSS-based system spanning responsive tables and form components across 15+ templates.',
-    tech: ['Django', 'Python', 'SQLite', 'HTML5', 'CSS3', 'JavaScript'],
-    github: 'https://github.com/anandukrishna-git', // placeholder — replace with exact repo URL
-    liveDemo: '', // placeholder — leave empty until a live URL is provided
+    tagline: 'Multi-role platform for students, staff and companies.',
+    description: 'A four-role Django platform — student, staff, company and admin — covering the full lifecycle of a student project: submission, staff verification and credit scoring, company shortlisting, and conference invitations, backed by a parallel REST API for a companion mobile app.',
+    tech: ['Django', 'Django REST Framework', 'Python', 'SQLite', 'HTML5', 'CSS3', 'JavaScript'],
+    github: 'https://github.com/anandukrrishna/skillhub',
+    liveDemo: '',
     case: {
-      overview: 'A multi-role platform connecting students, companies and internal staff around project listings, applications and feedback.',
-      features: 'Project listings, shortlisting workflow, feedback system, 10+ interlinked Django ORM models.',
-      role: '',
-      problem: '',
-      solution: '',
-      challenges: '',
-      result: ''
+      overview: 'A multi-role platform connecting students, companies and internal staff around project submissions, verification, shortlisting and feedback — with a shared, reusable front-end system across every role.',
+      features: 'Project submission and staff verification with a 0–10 credit score, company browsing and shortlisting of verified projects, conference invitations with accept/reject responses, department-scoped staff views, and a parallel Django REST Framework API layer for a companion mobile client.',
+      role: 'Modelled 10+ interlinked entities in Django ORM and built the full front end, plus the DRF API layer, unifying the interface with a reusable, responsive component system spanning 15+ templates.',
+      problem: "Students, the staff supervising them, and companies scouting talent all needed one shared place to track project submissions and follow-up, instead of email threads and spreadsheets.",
+      solution: 'A four-role portal: students submit projects, staff verify and score them, companies browse verified work and shortlist candidates, and shortlisted students can be invited to conferences — all on a Django MVT core with a matching REST API for mobile.',
+      challenges: 'Keeping four different roles\u2019 permissions and views consistent as the data model grew, and building a REST API that mirrors the web app\u2019s behaviour closely enough to support a mobile client without duplicating business logic.',
+      result: 'A complete multi-role portal covering the whole project lifecycle from submission to company shortlisting, with a working DRF API layer running alongside the server-rendered views.'
     }
-  }
-];
-
-/* Dummy certificate image used as a placeholder for every certification
-   until real certificate scans/screenshots are supplied. Replace any
-   `image` field below with a real path under assets/certs/ — layout and
-   code never need to change. (Certifications keep their image/logo
-   affordances — only project cards were simplified to text-only.) */
-const DUMMY_CERT_IMAGE = 'assets/certs/dummy-certificate.svg';
-
-const certifications = [
-  {
-    issuer: 'Infosys Springboard',
-    title: 'Python Fundamentals',
-    description: 'Core Python: syntax, data structures, control flow and problem solving.',
-    date: '',
-    logo: '',
-    image: DUMMY_CERT_IMAGE,
-    certUrl: ''
-  },
-  {
-    issuer: 'Udemy',
-    title: 'Python Certification',
-    description: 'Applied Python programming across scripting and application-building exercises.',
-    date: '',
-    logo: '',
-    image: DUMMY_CERT_IMAGE,
-    certUrl: ''
-  },
-  {
-    issuer: 'AWS Aspire',
-    title: 'Generative AI Revolution',
-    description: 'Foundations of generative AI concepts and their practical applications.',
-    date: '',
-    logo: '',
-    image: DUMMY_CERT_IMAGE,
-    certUrl: ''
-  },
-  {
-    issuer: 'NPTEL',
-    title: 'Introduction to IoT 4.0',
-    description: 'Fundamentals of IoT architecture, connected devices and Industry 4.0 concepts.',
-    date: '',
-    logo: '',
-    image: DUMMY_CERT_IMAGE,
-    certUrl: ''
   }
 ];
 
@@ -129,7 +83,7 @@ function escapeHtml(str) {
 }
 
 /* ---------------------------------------------------------------------- */
-/* Rendering: project cards + certification cards                         */
+/* Rendering: project cards                                               */
 /* Project cards are text-only by design (see header note) — number,      */
 /* name, description, tech tags, actions. The case-study modal is         */
 /* likewise information-only (see openProjectModal).                      */
@@ -172,33 +126,8 @@ function renderProjects() {
   });
 }
 
-function renderCertifications() {
-  const grid = document.getElementById('cert-grid');
-  if (!grid) return;
-  grid.innerHTML = certifications.map((c, i) => `
-    <button class="glass cert-card reveal" type="button" data-cert-index="${i}" aria-haspopup="dialog">
-      ${c.logo
-        ? `<span class="cert-logo" aria-hidden="true"><img src="${c.logo}" alt="${escapeHtml(c.issuer)} logo" loading="lazy"></span>`
-        : `<span class="cert-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 15a5 5 0 1 0 0-10 5 5 0 0 0 0 10z"/><path d="M8.5 13.5 7 22l5-2.6L17 22l-1.5-8.5"/>
-            </svg>
-          </span>`}
-      <span>
-        <span class="cert-issuer mono">${escapeHtml(c.issuer)}</span>
-        <h5>${escapeHtml(c.title)}</h5>
-        ${c.date ? `<span class="cert-date mono">${escapeHtml(c.date)}</span>` : ''}
-      </span>
-    </button>
-  `).join('');
-
-  grid.querySelectorAll('.cert-card').forEach(card => {
-    card.addEventListener('click', () => openCertModal(Number(card.dataset.certIndex), card));
-  });
-}
-
 /* ---------------------------------------------------------------------- */
-/* Shared modal system                                                     */
+/* Modal system                                                            */
 /* ---------------------------------------------------------------------- */
 let lastFocusedEl = null;
 
@@ -270,45 +199,8 @@ function openProjectModal(id, triggerEl) {
   openModal(html, triggerEl);
 }
 
-/* Certification modal — compact, no unnecessary scrolling. Shows the
-   certificate image (dummy placeholder until a real one is supplied) and
-   minimal issuer information only. Independent of the project cards'
-   text-only treatment above. */
-function openCertModal(index, triggerEl) {
-  const c = certifications[index];
-  if (!c) return;
-
-  const html = `
-    <div class="modal-body-inner">
-      <span class="eyebrow modal-eyebrow">Certification</span>
-      <div class="modal-header-row">
-        ${c.logo ? `<span class="modal-logo"><img src="${c.logo}" alt="${escapeHtml(c.issuer)} logo"></span>` : ''}
-        <h3 class="modal-title" id="modal-title">${escapeHtml(c.title)}</h3>
-      </div>
-      ${c.image
-        ? `<div class="modal-cert-image"><img src="${c.image}" alt="${escapeHtml(c.title)} certificate"></div>`
-        : (!c.logo ? `<span class="modal-cert-mark" aria-hidden="true">${escapeHtml(c.issuer.slice(0, 2).toUpperCase())}</span>` : '')}
-      <div class="modal-meta">
-        <div><span>Issuer</span><strong>${escapeHtml(c.issuer)}</strong></div>
-        ${c.date ? `<div><span>Date</span><strong>${escapeHtml(c.date)}</strong></div>` : ''}
-      </div>
-      ${c.description ? `
-        <div class="modal-block">
-          <h5>About</h5>
-          <p>${escapeHtml(c.description)}</p>
-        </div>` : ''}
-      ${c.certUrl ? `
-        <div class="modal-actions">
-          <a href="${c.certUrl}" target="_blank" rel="noopener" class="btn btn-primary">View Certificate ↗</a>
-        </div>` : ''}
-    </div>
-  `;
-  openModal(html, triggerEl);
-}
-
 document.addEventListener('DOMContentLoaded', () => {
   renderProjects();
-  renderCertifications();
 
   const overlay = document.getElementById('modal-overlay');
   document.getElementById('modal-close')?.addEventListener('click', closeModal);
