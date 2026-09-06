@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://anandukrishnavp.example.com/sitemap.xml
+Sitemap: https://anandukrrishna.vercel.app/sitemap.xml
